@@ -1,5 +1,7 @@
 import pygame
 from src.main_menu import Main_menu
+from src.run_type import Run_type
+
 pygame.init()
 pygame.mixer.init()
 pygame.mixer.music.load("assets/audios/background.wav")
@@ -14,10 +16,9 @@ main_menu = Main_menu(SCREEN_WIDTH,  SCREEN_HEIGHT)
 clock = pygame.time.Clock()
 
 # Main loop
-running = True
-screen_status = "main menu"
-while running:
-    if screen_status == "main menu":
+running = Run_type().MAIN_MENU
+while running != Run_type().EXIT:
+    if running == Run_type().MAIN_MENU:
         running = main_menu.draw(screen)
     
 pygame.quit()

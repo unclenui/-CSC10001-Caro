@@ -1,6 +1,8 @@
 import pygame
+from .run_type import Run_type
 from .button import Button
 
+rt = Run_type()
 class Main_menu:
     def __init__(self, SCREEN_WIDTH, SCREEN_HEIGHT):
         self.start_normal  = "assets/graphics/buttons/start_button.png"
@@ -20,7 +22,7 @@ class Main_menu:
         self.background3_surface = pygame.image.load("assets/graphics/backgrounds/bgl3.png")
         self.background3_surface = pygame.transform.scale(self.background3_surface, (SCREEN_WIDTH, SCREEN_HEIGHT))
         
-    def draw(self, screen, running=True):
+    def draw(self, screen, running=rt.MAIN_MENU):
         screen.blit(self.background0_surface)
         screen.blit(self.background1_surface)
         screen.blit(self.background2_surface)
@@ -31,11 +33,11 @@ class Main_menu:
             self.exit_button.event = event
             
             if event.type == pygame.QUIT:
-                running = False
+                running = rt.EXIT
             if self.start_button.is_pressed(event):
                 print("Start Game Button Clicked")
             if self.exit_button.is_pressed(event):
-                running = False
+                running = rt.EXIT
                 print("Exit Game Button Clicked")
         # Update the display
         self.start_button.draw(screen)
