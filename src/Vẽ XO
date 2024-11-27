@@ -1,0 +1,6 @@
+def vex(a,b,c):
+    # a,b là tọa độ của góc trên cùng bên trái ô cần vẽ x và o, c là độ dài cạnh của ô
+    pygame.draw.line(screen, (255, 0, 0), (a, b), (a + c, b + c), 6)
+    pygame.draw.line(screen, (255,0,0), (a, b + c), (a + c, b), 6)
+def veo(a,b,c):
+    pygame.draw.circle(screen ,(0,0,255), (a +(c/2), b + (c/2)), (c/2), 6)
