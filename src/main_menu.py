@@ -2,41 +2,60 @@ import pygame
 from .run_type   import Run_type
 from .button     import Button
 from .background import Background
+from .holder     import Link
 rt = Run_type()
+
 class Main_menu:
     def __init__(self, SCREEN_WIDTH, SCREEN_HEIGHT):
-        self.start_normal  = "assets/graphics/buttons/start_button.png"
-        self.start_hover   = "assets/graphics/buttons/start_button_hover.png"
-        self.start_button  = Button(SCREEN_WIDTH//3+10, SCREEN_HEIGHT// 3, 240, 90, self.start_normal, self.start_hover)
-        
-        self.rules_normal   = "assets/graphics/buttons/rules_button.png"
-        self.rules_hover    = "assets/graphics/buttons/rules_button_hover.png"
-        self.rules_button   = Button(SCREEN_WIDTH//3+10, SCREEN_HEIGHT//2, 240, 90, self.rules_normal, self.rules_hover)
-
-        self.exit_normal    = "assets/graphics/buttons/exit_button.png"
-        self.exit_hover     = "assets/graphics/buttons/exit_button_hover.png"
-        self.exit_button    = Button(SCREEN_WIDTH//3+10, SCREEN_HEIGHT//1.5, 240, 90, self.exit_normal, self.exit_hover)
-        self.back_ground    = Background(SCREEN_WIDTH, SCREEN_HEIGHT)
-
+        #MAIN MENU BUTTONs
+        self.SCREEN_WIDTH   = SCREEN_WIDTH
+        self.SCREEN_HEIGHT  = SCREEN_HEIGHT
+        self.start_button   = Button(SCREEN_WIDTH//2-40, SCREEN_HEIGHT//6*3.75, 120, 45, Link.start_normal, Link.start_hover)
+        self.rules_button   = Button(SCREEN_WIDTH//2-40, SCREEN_HEIGHT//6*4.375, 120, 45, Link.rules_normal, Link.rules_hover)
+        self.exit_button    = Button(SCREEN_WIDTH//2-40, SCREEN_HEIGHT//6*5, 120, 45, Link.exit_normal, Link.exit_hover)
+        self.yes_button     = Button(SCREEN_WIDTH//2-40, SCREEN_HEIGHT//6*5, 120, 45, Link.yes_normal, Link.yes_hover)
+        self.no_button      = Button(SCREEN_WIDTH//3*2, SCREEN_HEIGHT//6*5, 120, 45, Link.no_normal, Link.no_hover)
+        #MAIN MENU BACKGROUND
+        self.back_ground    = Background(SCREEN_WIDTH, SCREEN_HEIGHT, Link.menu_bg)
+    
     def draw(self, screen, running=rt.MAIN_MENU):
         self.back_ground.draw(screen)
-        
+        #MENU EVENTS
         for event in pygame.event.get():
-            self.start_button.event  = event
-            self.exit_button.event   = event
-            self.rules_button.event  = event
             if event.type == pygame.QUIT:
                 running = rt.EXIT
+            #START BUTTON
             if self.start_button.is_pressed(event):
+                running = Run_type().IN_GAME
                 print("Start Game Button Clicked")
-            if self.exit_button.is_pressed(event):
-                running = rt.EXIT
-                print("Exit Game Button Clicked")
+            #RULES BUTTON 
             if self.rules_button.is_pressed(event):
                 print("Rules Game Button Clicked")
+            #EXIT BUTTON                
+            if self.exit_button.is_pressed(event):
+                running = rt.EXIT_CONFIRMATION
+                print("Exit Game Button Clicked")
+                
         # Update the display
         self.start_button.draw(screen)
         self.exit_button.draw(screen)
         self.rules_button.draw(screen)
         
+        return running
+    def exit(self, screen, running=rt.EXIT_CONFIRMATION):
+        bg = pygame.Surface((self.SCREEN_WIDTH, self.SCREEN_HEIGHT), pygame.SRCALPHA)
+        bg.fill((255, 0, 0, 128))
+        screen.blit(bg)
+        self.yes_button.draw(screen)
+        self.no_button.draw(screen)
+        
+        for event in pygame.event.get():
+            #YES BUTTON
+            if self.yes_button.is_pressed(event):
+                running = Run_type().EXIT
+                print("Yes Button Clicked")
+            #NO BUTTON 
+            if self.no_button.is_pressed(event):
+                running = Run_type().MAIN_MENU
+                print("No Button Clicked")
         return running
