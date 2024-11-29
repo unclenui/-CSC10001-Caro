@@ -7,14 +7,14 @@ class Board:
         self.box            = pygame.transform.scale(self.box, (BOX_SZ, BOX_SZ))
         self.start_x        = 40
         self.start_y        = 40
+        self.grid_size      = 9
         self.board          = [[0 for _ in range(9)] for _ in range(9)]
 
         self.x_img          = pygame.image.load(Link.x_img)
         self.x_img          = pygame.transform.scale(self.x_img, (BOX_SZ, BOX_SZ))
         self.o_img          = pygame.image.load(Link.o_img)
         self.o_img          = pygame.transform.scale(self.o_img, (BOX_SZ, BOX_SZ))
-        self.player1       = True
-    
+        self.player1        = True
     def draw_board(self, screen):
         for i in range(9):
             for j in range(9):
@@ -25,6 +25,25 @@ class Board:
                         screen.blit(self.x_img, (X, Y))
                     elif self.board[i][j] == 2: #O
                         screen.blit(self.o_img, (X, Y))
+    
+    def check_winner(self):
+        for row in range(self.grid_size):
+            for col in range(self.grid_size):
+                if self.board[row][col] != 0:
+                    #check colums
+                    if col + 4 < self.grid_size and all(self.board[row][col + i] == self.board[row][col] for i in range(5)):
+                        return self.board[row][col] == 1
+                    # check row
+                    if row + 4 < self.grid_size and all(self.board[row + i][col] == self.board[row][col] for i in range(5)):
+                        return self.board[row][col] == 1
+                    # check main diagnol
+                    if row + 4 < self.grid_size and col + 4 < self.grid_size and all(self.board[row + i][col + i] == self.board[row][col] for i in range(5)):
+                        return self.board[row][col] == 1
+                    # check anti diagnol
+                    if row - 4 >= 0 and col + 4 < self.grid_size and all(self.board[row - i][col + i] == self.board[row][col] for i in range(5)):
+                        return self.board[row][col] == 1
+        return None
+    ##RETURN TRUE if PLAYER1 WINS ELIF FALSE IF PLAYER2WIN, ELSE NONE
     
     def update(self, x, y):
         if (self.start_x <= x and x <= self.start_x + 8*self.BOX_SZ) and (self.start_y <= y and y <= self.start_y + 8*self.BOX_SZ):

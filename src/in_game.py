@@ -16,6 +16,13 @@ class In_game:
             if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
                 x, y = pygame.mouse.get_pos()
                 self.board.update(x, y)
+                winner = self.board.check_winner()
+                if winner == None:
+                    pass
+                if winner == True:
+                    print("Player 1 won!")
+                elif winner == False:
+                    print("Player 2 won!")
             if event.type == pygame.QUIT:
                 running = Run_type().EXIT
         return running
