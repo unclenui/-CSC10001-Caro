@@ -17,11 +17,12 @@ class Link:
     #MAIN MENU
     menu_bg        = "assets/graphics/backgrounds/background.png"
     mouse          = "assets/graphics/mouse.png"
-
-    
-    
+    #BACK_BUTTON
+    bb_normal      = "assets/graphics/buttons/back_button.png"
+    bb_hover       = "assets/graphics/buttons/back_button_hover.png"
     ingame_bg      = "assets/graphics/backgrounds/background-notitle.png"
     board          = "assets/graphics/board.png"
     x_img          = "assets/graphics/x.png"
     o_img          = "assets/graphics/o.png"
     box            = "assets/graphics/player_box.png"
+    status         = "assets/graphics/buttons/status.png"
