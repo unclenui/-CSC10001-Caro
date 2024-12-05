@@ -1,3 +1,4 @@
+#HOLDER LINK TO STUFF
 class Link:
     ## MAIN MENU STUFF
     start_normal  = "assets/graphics/buttons/start_button.png"
@@ -31,3 +32,4 @@ class Link:
     o_img          = "assets/graphics/o.png"
     box            = "assets/graphics/player_box.png"
     status         = "assets/graphics/buttons/status.png"
+    font           = "assets/fonts/main_font.ttf"
