@@ -31,6 +31,7 @@ class Main_menu:
                 print("Start Game Button Clicked")
             #RULES BUTTON 
             if self.rules_button.is_pressed(event):
+                running = rt.RULES
                 print("Rules Game Button Clicked")
             #EXIT BUTTON                
             if self.exit_button.is_pressed(event):

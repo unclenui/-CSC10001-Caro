@@ -9,6 +9,9 @@ class Link:
     #EXIT BUTTON
     exit_normal    = "assets/graphics/buttons/exit_button.png"
     exit_hover     = "assets/graphics/buttons/exit_button_hover.png"
+    #LEAVE BUTTON
+    leave_normal      = "assets/graphics/buttons/leave_button.png"
+    leave_hover       = "assets/graphics/buttons/leave_button_hover.png"
     #YES BUTTON
     yes_normal     = "assets/graphics/buttons/yes_button.png"
     yes_hover      = "assets/graphics/buttons/yes_button_hover.png"
@@ -18,6 +21,8 @@ class Link:
     #MAIN MENU
     menu_bg        = "assets/graphics/backgrounds/background.png"
     mouse          = "assets/graphics/mouse.png"
+    #RULES MENU
+    rules_bg       = "assets/graphics/backgrounds/background-notitle.png"
     #BACK_BUTTON
     bb_normal      = "assets/graphics/buttons/back_button.png"
     bb_hover       = "assets/graphics/buttons/back_button_hover.png"
