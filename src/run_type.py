@@ -1,4 +1,5 @@
 import pygame
+#JUST DEFINE THE CURRENT RUNTYPE
 class Run_type:
     def __init__(self):
         self.MAIN_MENU         = "main menu"
@@ -7,5 +8,3 @@ class Run_type:
         self.IN_GAME           = "in-game"
         self.RULES             = "rules"
 
-
-    

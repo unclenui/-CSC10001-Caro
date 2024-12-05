@@ -1,6 +1,7 @@
 import pygame
 from .holder import Link
 class Board:
+    #INITIALIZE
     def __init__(self, SCREEN_WIDTH, SCREEN_HEIGHT, BOX_SZ):
         self.BOX_SZ         = BOX_SZ
         self.box            = pygame.image.load(Link.box)
@@ -16,9 +17,13 @@ class Board:
         self.o_img          = pygame.transform.scale(self.o_img, (BOX_SZ, BOX_SZ))
         self.player1        = True
     
+    
+    #RESET BOARD
     def reset(self):
         self.board          = [[0 for _ in range(9)] for _ in range(9)]
 
+
+    #DRAW BOARD
     def draw_board(self, screen):
         for i in range(9):
             for j in range(9):
@@ -31,6 +36,8 @@ class Board:
                     elif self.board[i][j] == 2: #O
                         screen.blit(self.o_img, (X, Y))
     
+    
+    #CHECKER 
     def check_winner(self):
         for row in range(self.grid_size):
             for col in range(self.grid_size):
@@ -50,6 +57,8 @@ class Board:
         return None
     ##RETURN TRUE if PLAYER1 WINS ELIF FALSE IF PLAYER2WIN, ELSE NONE
     
+    
+    #UPDATE IN-GAME STATUS
     def update(self, x, y):
         if (self.start_x <= x and x <= self.start_x + 8*self.BOX_SZ) and (self.start_y <= y and y <= self.start_y + 8*self.BOX_SZ):
             i = (x - self.start_x)//self.BOX_SZ

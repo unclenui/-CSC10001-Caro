@@ -1,6 +1,7 @@
 import pygame
 
 class Button:
+    #INITIALIZE
     def __init__(self, x, y, width, height, normal, hover):
         self.rect            = pygame.Rect(x, y, width, height)
         self.width           = width
@@ -11,12 +12,16 @@ class Button:
         self.hover_img       = hover
         self.button_type     = normal
 
+
+    #SWITCH BUTTON PHASE NORMAL <> HOVER
     def button_phase(self):
         self.button_type = self.hover_img if self.is_hovered() else self.normal_img
     
+
     def is_hovered(self)->bool:
         return self.rect.collidepoint(pygame.mouse.get_pos())
     
+
     def is_pressed(self, event)->bool:
         return (
             event.type == pygame.MOUSEBUTTONDOWN
@@ -24,6 +29,7 @@ class Button:
             and self.rect.collidepoint(event.pos)
         )
     
+
     def draw(self, screen):
         self.button_phase()
         button_surface = pygame.image.load(self.button_type)
