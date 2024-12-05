@@ -3,9 +3,11 @@ from src.main_menu import Main_menu
 from src.run_type import Run_type
 from src.in_game import In_game
 from src.holder import Link
+from src.rules import Rules
+
 pygame.init()
 #FONT
-FONT = pygame.font.Font("assets/fonts/main_font.ttf", 100)
+FONT = pygame.font.Font("assets/fonts/main_font.ttf", 30)
 
 #MUSIC
 pygame.mixer.init()
@@ -27,6 +29,7 @@ pygame.display.set_caption("Caro Game")
 
 main_menu = Main_menu(SCREEN_WIDTH,  SCREEN_HEIGHT)
 in_game   = In_game(SCREEN_WIDTH, SCREEN_HEIGHT)
+rules = Rules(SCREEN_WIDTH, SCREEN_HEIGHT, FONT)
 clock = pygame.time.Clock()
 
 # Main loop
@@ -37,6 +40,8 @@ while running != Run_type().EXIT:
         running = main_menu.draw(screen)
     elif running == Run_type().IN_GAME:
         running = in_game.draw(screen)
+    elif running == Run_type().RULES:
+        running = rules.leave(screen)    
     elif running == Run_type().EXIT_CONFIRMATION:
         running = main_menu.exit(screen)
     screen.blit(cursor_image, pygame.mouse.get_pos())

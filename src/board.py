@@ -60,3 +60,5 @@ class Board:
             elif not self.player1 and not self.board[i][j]: 
                 self.board[i][j] = 2
                 self.player1 = not self.player1
+
+
