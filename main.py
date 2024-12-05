@@ -37,7 +37,6 @@ pygame.mouse.set_visible(False)
 #SCREEN TYPE
 main_menu = Main_menu(SCREEN_WIDTH,  SCREEN_HEIGHT)
 in_game   = In_game(SCREEN_WIDTH, SCREEN_HEIGHT)
-exit_cf   = Exit_cf(SCREEN_WIDTH, SCREEN_HEIGHT)
 rules = Rules(SCREEN_WIDTH, SCREEN_HEIGHT, FONT)
 exit_cf   = Exit_cf(SCREEN_WIDTH, SCREEN_HEIGHT)
 clock = pygame.time.Clock()
