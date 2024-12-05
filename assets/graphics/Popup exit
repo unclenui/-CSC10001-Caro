@@ -1,0 +1,42 @@
+import pygame
+import sys
+pygame.init()
+WIDTH, HEIGHT = 800, 600
+screen = pygame.display.set_mode((WIDTH, HEIGHT))
+pygame.display.set_caption("Are u sure u want to quit?")
+main_bg_img = pygame.image.load('background.png')
+popup_bg_img = pygame.image.load('board.png')
+exit_button_img = pygame.image.load('exit_button.png')
+yes_button_img = pygame.image.load('yes_button.png')
+no_button_img = pygame.image.load('no_button.png')
+main_bg_img = pygame.transform.scale(main_bg_img, (WIDTH, HEIGHT))
+popup_bg_img = pygame.transform.scale(popup_bg_img, (WIDTH // 2, HEIGHT // 3))
+exit_button_img = pygame.transform.scale(exit_button_img, (150, 50))
+yes_button_img = pygame.transform.scale(yes_button_img, (100, 40))
+no_button_img = pygame.transform.scale(no_button_img, (100, 40))
+exit_button_rect = exit_button_img.get_rect(center=(WIDTH // 2, HEIGHT // 2))
+yes_button_rect = yes_button_img.get_rect(center=(WIDTH // 2 - 100, HEIGHT // 2 + 100))
+no_button_rect = no_button_img.get_rect(center=(WIDTH // 2 + 100, HEIGHT // 2 + 100))
+popup_rect = popup_bg_img.get_rect(center=(WIDTH // 2, HEIGHT // 2))
+show_popup = False
+while True:
+    screen.blit(main_bg_img, (0, 0))
+    if not show_popup:
+        screen.blit(exit_button_img, exit_button_rect.topleft)
+    if show_popup:
+        screen.blit(popup_bg_img, popup_rect.topleft)
+        screen.blit(yes_button_img, yes_button_rect.topleft)
+        screen.blit(no_button_img, no_button_rect.topleft)
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            pygame.quit()
+            sys.exit()
+        if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
+            if not show_popup and exit_button_rect.collidepoint(event.pos):
+                show_popup = True
+            elif show_popup:
+                if yes_button_rect.collidepoint(event.pos):
+                    show_popup = False
+                elif no_button_rect.collidepoint(event.pos):
+                    show_popup = False
+    pygame.display.flip()
