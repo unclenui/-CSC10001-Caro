@@ -11,11 +11,8 @@ pygame.init()
 
 #FONT
 FONT = pygame.font.Font("assets/fonts/main_font.ttf", 30)
-=======
 from src.exit_cf import Exit_cf
 pygame.init()
-
->>>>>>> 71c2d25 (source code description and exit confirmation added)
 
 #MUSIC
 pygame.mixer.init()
