@@ -32,4 +32,15 @@ class Link:
     o_img          = "assets/graphics/o.png"
     box            = "assets/graphics/player_box.png"
     status         = "assets/graphics/buttons/status.png"
+    reset          = "assets/graphics/buttons/reset.png"
+    reset_hover    = "assets/graphics/buttons/reset-hover.png"
+    undo           = "assets/graphics/buttons/undo.png"
+    undo_hover     = "assets/graphics/buttons/undo-hover.png"
+    
     font           = "assets/fonts/main_font.ttf"
+    color          = (196,154,108)
+    
+    #MUSIC
+    bg_music       = "assets/audios/background.wav"
+    click_sfx      = "assets/audios/click_sound.wav"
+    win_sfx        = "assets/audios/win_sfx.wav"

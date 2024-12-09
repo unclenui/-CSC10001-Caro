@@ -1,5 +1,5 @@
 import pygame
-
+from .holder import Link
 class Button:
     #INITIALIZE
     def __init__(self, x, y, width, height, normal, hover):
@@ -11,7 +11,7 @@ class Button:
         self.normal_img      = normal
         self.hover_img       = hover
         self.button_type     = normal
-
+        self.click_sfx       = pygame.mixer.Sound(Link.click_sfx)
 
     #SWITCH BUTTON PHASE NORMAL <> HOVER
     def button_phase(self):
@@ -23,11 +23,15 @@ class Button:
     
 
     def is_pressed(self, event)->bool:
-        return (
+        status = (
             event.type == pygame.MOUSEBUTTONDOWN
             and event.button == 1 
             and self.rect.collidepoint(event.pos)
         )
+        if (status):
+            self.click_sfx.play()
+        return status
+        
     
 
     def draw(self, screen):

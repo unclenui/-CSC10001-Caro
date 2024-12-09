@@ -16,7 +16,7 @@ pygame.init()
 
 #MUSIC
 pygame.mixer.init()
-pygame.mixer.music.load("assets/audios/background.wav")
+pygame.mixer.music.load(Link.bg_music)
 pygame.mixer.music.play(-1)
 
 
@@ -26,7 +26,6 @@ SCREEN_HEIGHT = 600
 background_color = (30, 30, 30)
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 pygame.display.set_caption("Caro Game")
-
 
 #MOUSE CURSOR
 cursor_image = pygame.image.load(Link.mouse)  
@@ -53,7 +52,7 @@ while running != Run_type().EXIT:
     elif running == Run_type().RULES:
         running = rules.leave(screen)    
     elif running == Run_type().EXIT_CONFIRMATION:
-        main_menu.draw(screen)
+        main_menu.back_ground.draw(screen)
         running = exit_cf.draw(screen)
     screen.blit(cursor_image, pygame.mouse.get_pos())
     pygame.display.update()

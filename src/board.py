@@ -10,6 +10,7 @@ class Board:
         self.start_y        = 80
         self.grid_size      = 9
         self.board          = [[0 for _ in range(9)] for _ in range(9)]
+        self.move_history   = []
 
         self.x_img          = pygame.image.load(Link.x_img)
         self.x_img          = pygame.transform.scale(self.x_img, (BOX_SZ, BOX_SZ))
@@ -21,6 +22,7 @@ class Board:
     #RESET BOARD
     def reset(self):
         self.board          = [[0 for _ in range(9)] for _ in range(9)]
+        self.move_history   = []
 
 
     #DRAW BOARD
@@ -57,6 +59,11 @@ class Board:
         return None
     ##RETURN TRUE if PLAYER1 WINS ELIF FALSE IF PLAYER2WIN, ELSE NONE
     
+    def undo(self):
+        if self.move_history:
+            last_move = self.move_history.pop()
+            self.board[last_move[0]][last_move[1]] = 0
+            self.player1 = not self.player1
     
     #UPDATE IN-GAME STATUS
     def update(self, x, y):
@@ -65,9 +72,15 @@ class Board:
             j = (y - self.start_y)//self.BOX_SZ
             if self.player1 and not self.board[i][j]: 
                 self.board[i][j] = 1
+                self.move_history.append((i,j))
                 self.player1 = not self.player1
+                return True
             elif not self.player1 and not self.board[i][j]: 
                 self.board[i][j] = 2
+                self.move_history.append((i,j))
                 self.player1 = not self.player1
+                return True
+        else: 
+            return False
 
 
