@@ -15,6 +15,7 @@ class Notify:
         self.text_surf        = self.font.render(self.text, True, Link.color)
         self.text_rect        = self.text_surf.get_rect() 
         self.text_rect.center = (SCREEN_WIDTH//2, SCREEN_HEIGHT//2)
+        self.time             = 0
     
     def update(self, text):
         self.text = text
@@ -22,11 +23,12 @@ class Notify:
         self.text_rect        = self.text_surf.get_rect() 
         self.text_rect.center = (self.SCREEN_WIDTH//2, self.SCREEN_HEIGHT//2)
         
-        
     def draw(self, screen):
+        if self.time: return 
         screen.blit(self.bg, (0, 0))
         screen.blit(self.text_surf, self.text_rect)
         pygame.display.update()
         self.win_sfx.play()
         time.sleep(2)
+        self.time = self.time + 1
     

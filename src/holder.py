@@ -41,11 +41,17 @@ class Link:
     inc_hover      = "assets/graphics/buttons/inc_hover.png"
     ninc           = "assets/graphics/buttons/ninc.png"
     ninc_hover     = "assets/graphics/buttons/ninc_hover.png"
+    #OK BUTTON
+    ok             = "assets/graphics/buttons/OK.png"
+    ok_hover       = "assets/graphics/buttons/OK_hover.png"
+    #REPLAY BUTTON
+    replay         = "assets/graphics/buttons/replay.png"
+    replay_hover   = "assets/graphics/buttons/replay_hover.png"
     
     ingame_bg      = "assets/graphics/backgrounds/background-notitle.png"
     board          = "assets/graphics/board.png"
     p_img          = ["assets/graphics/p0.png", "assets/graphics/p1.png", "assets/graphics/p2.png", "assets/graphics/p3.png"]
-    box            = "assets/graphics/player_box.png"
+    box            = ["assets/graphics/player_box.png", "assets/graphics/player_box_win.png"]
     status         = "assets/graphics/buttons/status.png"
     
     font           = "assets/fonts/main_font.ttf"

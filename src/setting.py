@@ -14,13 +14,13 @@ class Setting:
     def __init__(self, SCREEN_WIDTH, SCREEN_HEIGHT):
         self.board           = Background(SCREEN_WIDTH, SCREEN_HEIGHT, Link.board)
         self.grid_size       = 480
-        self.grid_div        = 16    
+        self.grid_div        = 10
         self.box_sz          = self.grid_size/self.grid_div
 
         self.o_cnt           = 0
         self.x_cnt           = 1
-        self.box             = pygame.image.load(Link.box)
-        self.box             = pygame.transform.scale(self.box, (self.box_sz, self.box_sz))
+        self.box             = pygame.transform.scale(pygame.image.load(Link.box[0]), (self.box_sz, self.box_sz))
+        self.wbox            = pygame.transform.scale(pygame.image.load(Link.box[1]), (self.box_sz, self.box_sz))
         self.x_img           = pygame.image.load(Link.p_img[self.x_cnt])
         self.x_img           = pygame.transform.scale(self.x_img, (self.box_sz, self.box_sz))
         self.o_img           = pygame.image.load(Link.p_img[self.o_cnt])
@@ -28,7 +28,7 @@ class Setting:
         
         self.setting_menu    = Background(106*4.55, 122*4.2,Link.setting_menu, 40, 58)
         self.font            = pygame.font.Font(None , 80)
-        self.board_sz_txt    = self.font.render(str(self.grid_div), False, Link.color)
+        self.board_sz_txt    = self.font.render(str(self.grid_div), False, (255,255,255))
         
         self.inc_button_brd  = Button(420, 195, 50, 50, Link.inc, Link.inc_hover)
         self.ninc_button_brd = Button(270, 195, 50, 50, Link.ninc, Link.ninc_hover)
@@ -39,16 +39,19 @@ class Setting:
         self.inc_button_px   = Button(420, 395, 50, 50, Link.inc, Link.inc_hover)
         self.ninc_button_px  = Button(270, 395, 50, 50, Link.ninc, Link.ninc_hover)
         
-        self.back_ing        = Button(400, 500, 50, 50, Link.bb_normal, Link.bb_hover)
+        self.status         = Button(525, 80, 250, 80, Link.status, Link.status)
+        self.undo           = Button(525, 180, 250, 80, Link.undo, Link.undo_hover)
+        self.reset          = Button(525, 280, 250, 80, Link.reset, Link.reset_hover)
+        self.back_ing        = Button(525, 380, 250, 80,Link.ok, Link.ok_hover)
         
     def update(self):
         self.box_sz         = self.grid_size/self.grid_div
-        self.board_sz_txt   = self.font.render(str(self.grid_div), False, Link.color)
+        self.board_sz_txt   = self.font.render(str(self.grid_div), False, (255,255,255))
         
-        self.box            = pygame.image.load(Link.box)
+        self.box             = pygame.transform.scale(pygame.image.load(Link.box[0]), (self.box_sz, self.box_sz))
+        self.wbox            = pygame.transform.scale(pygame.image.load(Link.box[1]), (self.box_sz, self.box_sz))
         self.x_img          = pygame.image.load(Link.p_img[self.x_cnt])
         self.o_img          = pygame.image.load(Link.p_img[self.o_cnt])
-        self.box            = pygame.transform.scale(self.box, (self.box_sz, self.box_sz))
         self.x_img          = pygame.transform.scale(self.x_img, (self.box_sz, self.box_sz))
         self.o_img          = pygame.transform.scale(self.o_img, (self.box_sz, self.box_sz))
         pygame.display.update()
@@ -56,6 +59,13 @@ class Setting:
 
     def draw(self, screen):
         self.board.draw(screen)
+        self.status.draw(screen) 
+        self.undo.draw(screen) 
+        self.reset.draw(screen) 
+        bg        = pygame.Surface((800, 600), pygame.SRCALPHA)
+        bg.fill((0, 0, 0, 70))
+        screen.blit(bg, (0, 0))
+
         self.setting_menu.draw(screen)
         screen.blit(self.board_sz_txt, (335, 200))       
         #line 1
@@ -103,6 +113,7 @@ class Setting:
                 self.x_cnt = mninc(self.x_cnt, len(Link.p_img))    
                 if (self.x_cnt==self.o_cnt): self.x_cnt = mninc(self.x_cnt, len(Link.p_img))
 
+            #BACK_TO_INGAME
             if (self.back_ing.is_pressed(event)):
                 running = Run_type().IN_GAME
 

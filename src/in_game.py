@@ -17,51 +17,57 @@ class In_game:
         self.status         = Button(525, 80, 250, 80, Link.status, Link.status)
         self.undo           = Button(525, 180, 250, 80, Link.undo, Link.undo_hover)
         self.reset          = Button(525, 280, 250, 80, Link.reset, Link.reset_hover)
+        self.replay         = Button(525, 380, 250, 80, Link.replay_hover, Link.replay_hover)
         self.click_sfx      = pygame.mixer.Sound(Link.click_sfx)
         self.notify         = Notify(SCREEN_WIDTH, SCREEN_HEIGHT)
 
     def draw(self, screen, running=Run_type().IN_GAME):
+        winner = None
         #DRAW USER INTERFACE
         self.back_ground.draw(screen)
-        self.board.draw_board(screen)
+        self.board.draw_board(screen, winner)
         self.back_button.draw(screen)
         self.setting.draw(screen)
         self.status.draw(screen)
         self.reset.draw(screen)
         self.undo.draw(screen)
+        self.replay.draw(screen)
         #STATUS BOARD
-        TURN = (self.board.sm.x_img if self.board.player1 else self.board.sm.o_img)
-        TURN = pygame.transform.scale(TURN, (60, 60))
+        TURN = pygame.transform.scale((self.board.sm.x_img if self.board.player1 else self.board.sm.o_img), (60, 60))
         screen.blit(TURN, (680, 85))
 
         #EVENT CHECKER            
         for event in pygame.event.get():
             winner = self.board.check_winner()
-            if winner == True:
-                self.notify.update("Green won!")
+            if winner != None:
+                self.notify.update("Game over!")
                 self.notify.draw(screen)
-                self.board.reset()
-            elif winner == False:
-                self.notify.update("Brown won!")
-                self.notify.draw(screen)
-                self.board.reset()
+                self.replay.normal_img = Link.replay
                 
             if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
                 x, y = pygame.mouse.get_pos()
-                status = self.board.update(x, y)
-                if (status):
-                    self.click_sfx.play()
+                if winner == None: status = self.board.update(x, y)
+                self.click_sfx.play()
                         
             if event.type == pygame.QUIT:
                 running = Run_type().EXIT
             if self.back_button.is_pressed(event):
                 running = Run_type().MAIN_MENU
+                self.notify.time = 0
                 self.board.reset()
             if self.reset.is_pressed(event):
                 self.board.reset()
-            if self.undo.is_pressed(event):
+                self.notify.time = 0
+            if self.undo.is_pressed(event) and winner == None:
                 self.board.undo()
+            if self.replay.is_pressed(event) and winner != None:
+                self.board.replay(screen)
+                self.notify.time = 0
+                self.replay.normal_img = Link.replay_hover
+                
             if self.setting.is_pressed(event):
                 running = self.board.sm.draw(screen)
+                TURN = pygame.transform.scale((self.board.sm.x_img if self.board.player1 else self.board.sm.o_img), (60, 60))
+                self.notify.time = 0
         return running
             
