@@ -26,16 +26,27 @@ class Link:
     #BACK_BUTTON
     bb_normal      = "assets/graphics/buttons/back_button.png"
     bb_hover       = "assets/graphics/buttons/back_button_hover.png"
-    ingame_bg      = "assets/graphics/backgrounds/background-notitle.png"
-    board          = "assets/graphics/board.png"
-    x_img          = "assets/graphics/x.png"
-    o_img          = "assets/graphics/o.png"
-    box            = "assets/graphics/player_box.png"
-    status         = "assets/graphics/buttons/status.png"
+    #RESET BUTTON
     reset          = "assets/graphics/buttons/reset.png"
     reset_hover    = "assets/graphics/buttons/reset-hover.png"
+    #UNDO BUTTON
     undo           = "assets/graphics/buttons/undo.png"
     undo_hover     = "assets/graphics/buttons/undo-hover.png"
+    #SETTING BUTTON
+    setting        = "assets/graphics/buttons/setting.png"
+    setting_hover  = "assets/graphics/buttons/setting-hover.png"
+    setting_menu   = "assets/graphics/Setting-menu.png"
+    #INC_NINC BUTTON
+    inc            = "assets/graphics/buttons/inc.png"
+    inc_hover      = "assets/graphics/buttons/inc_hover.png"
+    ninc           = "assets/graphics/buttons/ninc.png"
+    ninc_hover     = "assets/graphics/buttons/ninc_hover.png"
+    
+    ingame_bg      = "assets/graphics/backgrounds/background-notitle.png"
+    board          = "assets/graphics/board.png"
+    p_img          = ["assets/graphics/p0.png", "assets/graphics/p1.png", "assets/graphics/p2.png", "assets/graphics/p3.png"]
+    box            = "assets/graphics/player_box.png"
+    status         = "assets/graphics/buttons/status.png"
     
     font           = "assets/fonts/main_font.ttf"
     color          = (196,154,108)

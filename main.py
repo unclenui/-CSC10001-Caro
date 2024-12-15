@@ -29,7 +29,7 @@ pygame.display.set_caption("Caro Game")
 
 #MOUSE CURSOR
 cursor_image = pygame.image.load(Link.mouse)  
-cursor_image = pygame.transform.scale(cursor_image, (32, 32)) 
+cursor_image = pygame.transform.scale(cursor_image, (40, 40)) 
 pygame.mouse.set_visible(False)
 
 
@@ -54,6 +54,9 @@ while running != Run_type().EXIT:
     elif running == Run_type().EXIT_CONFIRMATION:
         main_menu.back_ground.draw(screen)
         running = exit_cf.draw(screen)
+    elif running == Run_type().SETTING:
+        running = in_game.board.sm.draw(screen)
+        in_game.board.reset()
     screen.blit(cursor_image, pygame.mouse.get_pos())
     pygame.display.update()
     clock.tick(60)

@@ -7,4 +7,5 @@ class Run_type:
         self.EXIT_CONFIRMATION = "exit confirmation"
         self.IN_GAME           = "in-game"
         self.RULES             = "rules"
+        self.SETTING           = "setting"
 
