@@ -13,12 +13,12 @@ class Board:
         self.move_history   = []
 
         self.player1        = True
-        
+    #RESET REQUEST HANDLE
     def reset(self):
         self.board          = [[0 for _ in range(20)] for _ in range(20)]
         self.board_type     = [[0 for _ in range(20)] for _ in range(20)]
         self.move_history   = []
-
+    
     def draw_board(self, screen, winner=None):
         for i in range(self.sm.grid_div):
             for j in range(self.sm.grid_div):
@@ -33,7 +33,7 @@ class Board:
                         screen.blit(self.sm.x_img, (X, Y))
                     elif self.board[i][j] == 2: #O
                         screen.blit(self.sm.o_img, (X, Y))
-    
+    #REPLAY REQUEST HANDLE
     def replay(self, screen):
         move_history = self.move_history
         print(len(self.move_history))

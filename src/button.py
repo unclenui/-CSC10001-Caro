@@ -17,11 +17,9 @@ class Button:
     def button_phase(self):
         self.button_type = self.hover_img if self.is_hovered() else self.normal_img
     
-
     def is_hovered(self)->bool:
         return self.rect.collidepoint(pygame.mouse.get_pos())
     
-
     def is_pressed(self, event)->bool:
         status = (
             event.type == pygame.MOUSEBUTTONDOWN
@@ -32,8 +30,6 @@ class Button:
             self.click_sfx.play()
         return status
         
-    
-
     def draw(self, screen):
         self.button_phase()
         button_surface = pygame.image.load(self.button_type)
