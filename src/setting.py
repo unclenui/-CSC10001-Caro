@@ -55,7 +55,6 @@ class Setting:
         self.x_img          = pygame.transform.scale(self.x_img, (self.box_sz, self.box_sz))
         self.o_img          = pygame.transform.scale(self.o_img, (self.box_sz, self.box_sz))
         pygame.display.update()
-            
 
     def event_handle(self, screen, running=Run_type().SETTING):
         for event in pygame.event.get():
