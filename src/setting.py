@@ -57,35 +57,7 @@ class Setting:
         pygame.display.update()
             
 
-    def draw(self, screen):
-        self.board.draw(screen)
-        self.status.draw(screen) 
-        self.undo.draw(screen) 
-        self.reset.draw(screen) 
-        bg        = pygame.Surface((800, 600), pygame.SRCALPHA)
-        bg.fill((0, 0, 0, 70))
-        screen.blit(bg, (0, 0))
-
-        self.setting_menu.draw(screen)
-        screen.blit(self.board_sz_txt, (335, 200))       
-        #line 1
-        self.inc_button_brd.draw(screen) 
-        self.ninc_button_brd.draw(screen)
-        #line 2
-        self.inc_button_po.draw(screen) 
-        self.ninc_button_po.draw(screen)
-        #line 3
-        self.inc_button_px.draw(screen) 
-        self.ninc_button_px.draw(screen)
-        
-        SET_O = pygame.transform.scale(self.o_img, (60, 60))
-        SET_X = pygame.transform.scale(self.x_img, (60, 60))
-        screen.blit(SET_O, (340, 295))
-        screen.blit(SET_X, (340, 395))
-        
-        self.back_ing.draw(screen) 
-        
-        running = Run_type().SETTING
+    def event_handle(self, screen, running=Run_type().SETTING):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = Run_type().EXIT
@@ -119,4 +91,34 @@ class Setting:
 
             self.update()
         return running        
+
+    def draw(self, screen):
+        self.board.draw(screen)
+        self.status.draw(screen) 
+        self.undo.draw(screen) 
+        self.reset.draw(screen) 
+        bg        = pygame.Surface((800, 600), pygame.SRCALPHA)
+        bg.fill((0, 0, 0, 70))
+        screen.blit(bg, (0, 0))
+
+        self.setting_menu.draw(screen)
+        screen.blit(self.board_sz_txt, (335, 200))       
+        #line 1
+        self.inc_button_brd.draw(screen) 
+        self.ninc_button_brd.draw(screen)
+        #line 2
+        self.inc_button_po.draw(screen) 
+        self.ninc_button_po.draw(screen)
+        #line 3
+        self.inc_button_px.draw(screen) 
+        self.ninc_button_px.draw(screen)
+        
+        SET_O = pygame.transform.scale(self.o_img, (60, 60))
+        SET_X = pygame.transform.scale(self.x_img, (60, 60))
+        screen.blit(SET_O, (340, 295))
+        screen.blit(SET_X, (340, 395))
+        
+        self.back_ing.draw(screen) 
+        return self.event_handle(screen)
+        
         

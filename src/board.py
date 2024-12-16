@@ -4,7 +4,6 @@ from .holder import Link
 from .setting       import Setting
 
 class Board:
-    #INITIALIZE
     def __init__(self, SCREEN_WIDTH, SCREEN_HEIGHT, BOX_SZ):
         self.sm             = Setting(SCREEN_WIDTH, SCREEN_HEIGHT)
         self.start_x        = 40
@@ -15,12 +14,10 @@ class Board:
 
         self.player1        = True
         
-    #RESET BOARD
     def reset(self):
         self.board          = [[0 for _ in range(20)] for _ in range(20)]
         self.board_type     = [[0 for _ in range(20)] for _ in range(20)]
         self.move_history   = []
-
 
     def draw_board(self, screen, winner=None):
         for i in range(self.sm.grid_div):
@@ -72,13 +69,11 @@ class Board:
                         winner = self.board[row][col] == 1
         return winner
     ##RETURN TRUE if PLAYER1 WINS ELIF FALSE IF PLAYER2WIN, ELSE NONE
-    
     def undo(self):
         if self.move_history:
             last_move = self.move_history.pop()
             self.board[last_move[0]][last_move[1]] = 0
             self.player1 = not self.player1
-    
     #UPDATE IN-GAME STATUS
     def update(self, x, y, player=None, flag=None):
         if flag: 

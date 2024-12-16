@@ -8,7 +8,6 @@ from .notification  import Notify
 from .setting       import Setting
 
 class In_game:
-    #INITIALIZE
     def __init__(self, SCREEN_WIDTH, SCREEN_HEIGHT, GRID_SIZE=30):
         self.board          = Board(SCREEN_WIDTH, SCREEN_HEIGHT, GRID_SIZE)
         self.back_ground    = Background(SCREEN_WIDTH, SCREEN_HEIGHT, Link.board)
@@ -21,22 +20,9 @@ class In_game:
         self.click_sfx      = pygame.mixer.Sound(Link.click_sfx)
         self.notify         = Notify(SCREEN_WIDTH, SCREEN_HEIGHT)
 
-    def draw(self, screen, running=Run_type().IN_GAME):
+    def event_handle(self, screen, running=Run_type().IN_GAME):
         winner = None
-        #DRAW USER INTERFACE
-        self.back_ground.draw(screen)
-        self.board.draw_board(screen, winner)
-        self.back_button.draw(screen)
-        self.setting.draw(screen)
-        self.status.draw(screen)
-        self.reset.draw(screen)
-        self.undo.draw(screen)
-        self.replay.draw(screen)
-        #STATUS BOARD
-        TURN = pygame.transform.scale((self.board.sm.x_img if self.board.player1 else self.board.sm.o_img), (60, 60))
-        screen.blit(TURN, (680, 85))
 
-        #EVENT CHECKER            
         for event in pygame.event.get():
             winner = self.board.check_winner()
             if winner != None:
@@ -49,17 +35,21 @@ class In_game:
                 if winner == None: status = self.board.update(x, y)
                 self.click_sfx.play()
                         
+            if self.undo.is_pressed(event) and winner == None:
+                self.board.undo()
+            
             if event.type == pygame.QUIT:
                 running = Run_type().EXIT
+            
             if self.back_button.is_pressed(event):
                 running = Run_type().MAIN_MENU
                 self.notify.time = 0
                 self.board.reset()
+            
             if self.reset.is_pressed(event):
                 self.board.reset()
                 self.notify.time = 0
-            if self.undo.is_pressed(event) and winner == None:
-                self.board.undo()
+            
             if self.replay.is_pressed(event) and winner != None:
                 self.board.replay(screen)
                 self.notify.time = 0
@@ -70,4 +60,21 @@ class In_game:
                 TURN = pygame.transform.scale((self.board.sm.x_img if self.board.player1 else self.board.sm.o_img), (60, 60))
                 self.notify.time = 0
         return running
+    
+    def draw(self, screen, running=Run_type().IN_GAME):
+        #DRAW USER INTERFACE
+        self.back_ground.draw(screen)
+        self.board.draw_board(screen)
+        self.back_button.draw(screen)
+        self.setting.draw(screen)
+        self.status.draw(screen)
+        self.reset.draw(screen)
+        self.undo.draw(screen)
+        self.replay.draw(screen)
+        TURN = pygame.transform.scale((self.board.sm.x_img if self.board.player1 else self.board.sm.o_img), (60, 60))
+        screen.blit(TURN, (680, 85))
+
+        return self.event_handle(screen)
+        #EVENT CHECKER            
             
+        

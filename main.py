@@ -47,18 +47,23 @@ while running != Run_type().EXIT:
     
     if running == Run_type().MAIN_MENU:
         running = main_menu.draw(screen)
+    
     elif running == Run_type().IN_GAME:
         running = in_game.draw(screen)
+    
     elif running == Run_type().RULES:
         running = rules.leave(screen)    
+    
     elif running == Run_type().EXIT_CONFIRMATION:
         main_menu.back_ground.draw(screen)
         running = exit_cf.draw(screen)
+    
     elif running == Run_type().SETTING:
         running = in_game.board.sm.draw(screen)
         in_game.board.reset()
+    
     screen.blit(cursor_image, pygame.mouse.get_pos())
     pygame.display.update()
     clock.tick(60)
-#QUIT     
+
 pygame.quit()
