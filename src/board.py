@@ -4,7 +4,7 @@ from .holder import Link
 from .setting       import Setting
 
 class Board:
-    def __init__(self, SCREEN_WIDTH, SCREEN_HEIGHT, BOX_SZ):
+    def __init__(self, SCREEN_WIDTH, SCREEN_HEIGHT):
         self.sm             = Setting(SCREEN_WIDTH, SCREEN_HEIGHT)
         self.start_x        = 40
         self.start_y        = 80

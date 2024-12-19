@@ -8,8 +8,8 @@ from .notification  import Notify
 from .setting       import Setting
 
 class In_game:
-    def __init__(self, SCREEN_WIDTH, SCREEN_HEIGHT, GRID_SIZE=30):
-        self.board          = Board(SCREEN_WIDTH, SCREEN_HEIGHT, GRID_SIZE)
+    def __init__(self, SCREEN_WIDTH, SCREEN_HEIGHT):
+        self.board          = Board(SCREEN_WIDTH, SCREEN_HEIGHT)
         self.back_ground    = Background(SCREEN_WIDTH, SCREEN_HEIGHT, Link.board)
         self.back_button    = Button(40, 20, 50, 50, Link.bb_normal, Link.bb_hover)
         self.setting        = Button(110, 20, 50, 50, Link.setting, Link.setting_hover)
