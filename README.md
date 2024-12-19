@@ -5,7 +5,7 @@
 ![Team](https://img.shields.io/badge/Team-1-green)
 
 ## 🎮 About the Project
-
+We are the groups of students studying at VNUHCM University of Science. Currently, We are striving to achieve a Bachelor degree in Information Technology.
 This is a **Caro Game** developed as a group project for the course **"Introduction to Information Technology" (CSC00004)** by **Team 1** of class **24CNTN**. The project focuses on creating a user-friendly and engaging Caro game, incorporating interactive gameplay and an appealing interface.
 
 ---
@@ -22,19 +22,14 @@ This is a **Caro Game** developed as a group project for the course **"Introduct
 
 ---
 
-## 🛠️ Features
-
-- **Player vs Player** mode.
-- **Responsive UI/UX** for smooth gameplay.
-- **Dynamic board size** for flexible game setups.
-- **Winning condition tracking** with visual feedback.
-- **Built using Python with a focus on modularity and clean code.**
-
----
-
 ## 🚀 How to Run the Game
-
-1. Clone the repository:
+1. Prerequisite:
+- Python: 3.11.6
+- Pygame: 2.6.1
+2. Clone the repository:
    ```bash
-   git clone https://github.com/your-repo/caro-game.git
+   git clone https://github.com/unclenui/CSC00004-Caro
    cd caro-game
+2. Run the game:
+   ```bash
+   python main.py
